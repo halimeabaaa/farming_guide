@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ekin Rehberi - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div>
+                <div class="brand">Ekin Rehberi</div>
+                <div class="nav-subtitle">Çiftçiye özel akıllı tarım paneli</div>
+            </div>
+
+            <div class="nav-actions">
+                <button class="btn-secondary" id="refreshDashboardBtn">Analizi Yenile</button>
+                <button class="btn-secondary" id="saveOpenAIBtn">OpenAI Önerisini Kaydet</button>
+                <button class="btn-secondary" onclick="window.location.href='hesap.html'">Hesap Ayarları</button>
+                <button class="btn-danger" onclick="cikisYap()">Çıkış</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container dashboard-shell">
+        <section class="dashboard-hero">
+            <div>
+                <h1 class="page-title">Günlük Tarla Panosu</h1>
+                <p class="subtitle">Toprak, ürün ve hava verine göre bugünkü en önemli tarımsal özet</p>
+            </div>
+            <div class="status-chip" id="connectionStatus">Sistem Hazır</div>
+        </section>
+        <section class="farm-visual-band">
+            <div class="farm-sky"></div>
+            <div class="farm-hills"></div>
+            <div class="farm-field"></div>
+            <div class="farm-road"></div>
+        </section>
+
+        <div id="globalMessage" class="message"></div>
+
+        <section class="compact-summary">
+            <div class="compact-item">
+                <span>Konum</span>
+                <strong id="summaryKonum">-</strong>
+            </div>
+            <div class="compact-item">
+                <span>Bugünkü Hava</span>
+                <strong id="summaryHava">-</strong>
+            </div>
+            <div class="compact-item">
+                <span>Aktif Ürün</span>
+                <strong id="summaryUrun">-</strong>
+            </div>
+            <div class="compact-item">
+                <span>Toprak Türü</span>
+                <strong id="summaryToprak">-</strong>
+            </div>
+            <div class="compact-item">
+                <span>Arazi</span>
+                <strong id="summaryArazi">-</strong>
+            </div>
+            <div class="compact-item">
+                <span>Risk</span>
+                <strong id="summaryRisk">-</strong>
+            </div>
+        </section>
+
+        <section class="grid-2 clean-main-grid">
+            <div class="card dashboard-card">
+                <div class="card-top">
+                    <h2>Çiftçi Profili</h2>
+                    <span class="mini-chip">Profil</span>
+                </div>
+                <div id="profilBox" class="detail-grid"></div>
+            </div>
+
+            <div class="card dashboard-card openai-summary-card">
+                <div class="card-top">
+                    <h2>Akıllı Tarla Özeti</h2>
+                    <span class="mini-chip">Akıllı Özet</span>
+                </div>
+                <div id="openAISummaryBox" class="detail-grid"></div>
+            </div>
+        </section>
+    </main>
+
+    <button id="chatToggleBtn" class="chat-fab" title="Tarım Danışmanı">🌾</button>
+
+    <aside id="chatWidget" class="chat-widget hidden">
+        <div class="chat-widget-header">
+            <div>
+                <strong>Saha Danışmanı</strong>
+                <div class="chat-widget-subtitle">Sorununu yaz, birlikte çözüm bulalım</div>
+            </div>
+            <button id="chatCloseBtn" class="chat-close-btn">×</button>
+        </div>
+
+        <div id="chatMessages" class="chat-messages">
+            <div class="chat-message bot">
+                Merhaba, ben tarla danışmanın. Ürün hastalıkları, sulama, gübreleme, zararlı ve verim artırma konularında sorularını yanıtlayabilirim.
+            </div>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+            <div class="chat-upload-row">
+                <label for="chatImageInput" class="chat-upload-btn">Resim Ekle</label>
+                <input id="chatImageInput" type="file" accept="image/*" class="chat-file-input" />
+                <span id="chatImageName" class="chat-image-name">Resim seçilmedi</span>
+                <button type="button" id="chatImageClearBtn" class="chat-image-clear hidden">Temizle</button>
+            </div>
+            <img id="chatImagePreview" class="chat-image-preview hidden" alt="Seçilen görsel önizleme" />
+            <textarea id="chatInput" placeholder="Örneğin: Buğday başaklarımda beyaz küf gibi görüntü var, ne olabilir?" required></textarea>
+            <button type="submit" class="btn-primary">Sor</button>
+        </form>
+    </aside>
+
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-card">
+            <div class="loader"></div>
+            <p id="loadingText">Veriler yükleniyor...</p>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

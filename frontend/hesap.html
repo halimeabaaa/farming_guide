@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ekin Rehberi - Hesap Ayarları</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="brand">Ekin Rehberi</div>
+            <div class="nav-actions">
+                <button class="btn-secondary" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="btn-danger" onclick="cikisYap()">Çıkış</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Hesap Ayarları</h1>
+        <p class="subtitle">Kullanıcı ve profil bilgilerini buradan güncelleyebilirsin.</p>
+
+        <div id="globalMessage" class="message"></div>
+
+        <div class="card" style="margin-top: 14px;">
+            <h2>Ürün Anketi</h2>
+            <p class="subtitle">Birden fazla ürün ekleyebilirsin (ör: Buğday + Domates).</p>
+            <div id="urunListesiBox" class="detail-grid" style="margin-bottom: 14px;"></div>
+            <div class="btn-row" style="margin-bottom: 14px;">
+                <button type="button" id="newProductModeBtn" class="btn-secondary">Yeni Ürün Ekle Modu</button>
+            </div>
+            <form id="productForm">
+                <div class="grid-2" style="margin-top: 0;">
+                    <div class="form-group">
+                        <label for="urun_adi">Ürün Adı</label>
+                        <input type="text" id="urun_adi" placeholder="Örn: Buğday" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="urun_cesidi">Ürün Çeşidi</label>
+                        <input type="text" id="urun_cesidi" placeholder="Örn: Sert kırmızı buğday" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ekim_tarihi">Ekim Tarihi</label>
+                        <input type="date" id="ekim_tarihi" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tahmini_hasat_tarihi">Tahmini Hasat Tarihi</label>
+                        <input type="date" id="tahmini_hasat_tarihi" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="buyume_asamasi">Büyüme Aşaması</label>
+                        <select id="buyume_asamasi">
+                            <option value="">Seçiniz</option>
+                            <option value="tohum">Tohum</option>
+                            <option value="cimlenme">Çimlenme</option>
+                            <option value="fide">Fide</option>
+                            <option value="gelisim">Gelişim</option>
+                            <option value="ciceklenme">Çiçeklenme</option>
+                            <option value="meyve-dane">Meyve / Dane</option>
+                            <option value="olgunlasma">Olgunlaşma</option>
+                            <option value="hasat-yakini">Hasat Yakını</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" id="productSubmitBtn">Ürün Bilgilerini Kaydet</button>
+            </form>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h2>Kullanıcı Bilgileri</h2>
+                <form id="accountForm">
+                    <div class="form-group">
+                        <label for="ad_soyad">Ad Soyad</label>
+                        <input type="text" id="ad_soyad" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eposta">E-posta</label>
+                        <input type="email" id="eposta" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sifre">Yeni Şifre</label>
+                        <input type="password" id="sifre" placeholder="Değiştirmek istemiyorsan boş bırak" />
+                    </div>
+
+                    <button type="submit" class="btn-primary">Kullanıcı Bilgilerini Güncelle</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>Profil Bilgileri</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="sehir">Şehir</label>
+                        <input type="text" id="sehir" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ilce">İlçe</label>
+                        <input type="text" id="ilce" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arazi_buyuklugu">Arazi Büyüklüğü</label>
+                        <input type="number" step="0.01" id="arazi_buyuklugu" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arazi_birimi">Arazi Birimi</label>
+                        <select id="arazi_birimi">
+                            <option value="">Seçiniz</option>
+                            <option value="donum">Dönüm</option>
+                            <option value="hektar">Hektar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sulama_turu">Sulama Türü</label>
+                        <select id="sulama_turu">
+                            <option value="">Seçiniz</option>
+                            <option value="damla">Damla</option>
+                            <option value="yagmurlama">Yağmurlama</option>
+                            <option value="salma">Salma</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deneyim_seviyesi">Deneyim Seviyesi</label>
+                        <select id="deneyim_seviyesi">
+                            <option value="">Seçiniz</option>
+                            <option value="baslangic">Başlangıç</option>
+                            <option value="orta">Orta</option>
+                            <option value="ileri">İleri</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Profil Bilgilerini Güncelle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hesap.js"></script>
+</body>
+</html>

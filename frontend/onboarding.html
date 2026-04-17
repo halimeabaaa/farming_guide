@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ekin Rehberi - Profil Oluştur</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <div class="brand">Ekin Rehberi</div>
+            <div class="nav-actions">
+                <button class="btn-secondary" onclick="window.location.href='dashboard.html'">Dashboard</button>
+                <button class="btn-danger" onclick="cikisYap()">Çıkış</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Çiftçi Profilini Oluştur</h1>
+        <p class="subtitle">Bu bilgiler günlük önerileri kişiselleştirmek için kullanılacaktır.</p>
+
+        <div class="card">
+            <form id="profileForm">
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="sehir">Şehir</label>
+                        <input type="text" id="sehir" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ilce">İlçe</label>
+                        <input type="text" id="ilce" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arazi_buyuklugu">Arazi Büyüklüğü</label>
+                        <input type="number" step="0.01" id="arazi_buyuklugu" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="arazi_birimi">Arazi Birimi</label>
+                        <select id="arazi_birimi">
+                            <option value="">Seçiniz</option>
+                            <option value="donum">Dönüm</option>
+                            <option value="hektar">Hektar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sulama_turu">Sulama Türü</label>
+                        <select id="sulama_turu">
+                            <option value="">Seçiniz</option>
+                            <option value="damla">Damla</option>
+                            <option value="yagmurlama">Yağmurlama</option>
+                            <option value="salma">Salma</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deneyim_seviyesi">Deneyim Seviyesi</label>
+                        <select id="deneyim_seviyesi">
+                            <option value="">Seçiniz</option>
+                            <option value="baslangic">Başlangıç</option>
+                            <option value="orta">Orta</option>
+                            <option value="ileri">İleri</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Profili Kaydet</button>
+            </form>
+
+            <div id="message" class="message"></div>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/onboarding.js"></script>
+</body>
+</html>
